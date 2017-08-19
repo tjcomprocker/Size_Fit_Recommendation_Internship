@@ -1,0 +1,6 @@
+SELECT product_dim.size AS size_ordered,
+COUNT(order_item_unit_s1_fact.order_external_id) AS order_count
+FROM bigfoot_external_neo.sp_product__product_attribute_hive_dim product_dim 
+INNER JOIN bigfoot_external_neo.scp_oms__order_item_unit_s1_365_final_fact order_item_unit_s1_fact ON order_item_unit_s1_fact.order_item_product_id_key = product_dim.product_attribute_hive_dim_key
+WHERE product_dim.analytic_vertical IN ('MensJean') 
+GROUP BY product_dim.size;
